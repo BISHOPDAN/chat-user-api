@@ -37,6 +37,7 @@ Clone the project
 
 ```bash
 git clone https://github.com/BISHOPDAN/chat-user-api/
+cd chat-user-api
 ```
 
 Setup env & install dependencies
