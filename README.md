@@ -82,16 +82,7 @@ Run the server
 python manage.py runserver
 ```
 
-
 > For the database keys in the env file, you can create a new user and password for the project.
-
-This must be used to ensure all coding style guidelines are met
-
-```bash
-flake8
-```
-
-## 🎈 Usage <a name="usage"></a>
 
 To run the API on your local system.
 
@@ -136,10 +127,7 @@ Use the following steps below to contribute to this project.
 - [PostgreSQL](https://www.postgresql.org/) - Database
 - [Python](https://www.python.org/) - Programming Language
 
-
-## :book: Documentation <a name = "documentation"></a>
-
-## ✍️ Authors <a name = "authors"></a>
+## ✍️ Author <a name = "author"></a>
 
 - [@BISHOPDAN](https://github.com/BISHOPDAN/) - Project Setup & Initial work
 
