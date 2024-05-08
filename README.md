@@ -139,11 +139,9 @@ Use the following steps below to contribute to this project.
 
 ## :book: Documentation <a name = "documentation"></a>
 
-Things to note about the project
-
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@devvspaces](https://github.com/devvspaces) - Project Setup & Initial work
+- [@BISHOPDAN](https://github.com/BISHOPDAN/) - Project Setup & Initial work
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
