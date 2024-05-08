@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import User, Chat
 from .serializers import ChatSerializer
-from users.serializers import userDataSerializer
 from rest_framework.permissions import IsAuthenticated
 import random
 
