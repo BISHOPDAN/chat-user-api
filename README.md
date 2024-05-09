@@ -77,6 +77,9 @@ To run the API on your local system.
 ```bash
 python manage.py runserver
 ```
+> Some functionalities that need to be clear when testing there endpoints, the user where the otpverification endpoint is called, if the email was sent you will need to get the otp via the email or via the admin panel.
+
+
 
 API server will run on `http://localhost:8000/`. Visit [Swagger](http://localhost:8000/swagger/) to read the Swagger API documentation.
 

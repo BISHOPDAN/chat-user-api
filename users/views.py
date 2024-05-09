@@ -1,7 +1,5 @@
 from django.conf import settings
 import random
-import requests
-from django.shortcuts import get_object_or_404, render
 from rest_framework.views import APIView
 from django.core.mail import send_mail
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -14,7 +12,6 @@ from decouple import config
 from rest_framework import status
 
 # Newly Added
-from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
@@ -59,7 +56,7 @@ class Signup(APIView):
                 "activation/activation_email.html", context
             )
             # Send the verification email
-            subject = "LiviLeads | Verification Your Account"
+            subject = "IACHAT | Verification Your Account"
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [user.email]
             send_mail(subject, email_html_message, f"No-Reply {from_email}",
@@ -112,91 +109,6 @@ class OtpVerification(APIView):
             data = {
                 "Text": "Enterd wrong otp",
                 "email": User_Email,
-                "status": 400,
-            }
-            return Response(data=data)
-
-
-class ForgotPassword(APIView):
-    def post(self, request):
-        Forgot_Email = request.data.get("email")
-        try:
-            User.objects.get(email=Forgot_Email)
-            user_otp = random.randint(100000, 999999)
-            newOtp = VerificationOtp.objects.create(
-                email=Forgot_Email, checkotp=user_otp)
-            subject = "Livileads | Forgot Password"
-            message = f"Please verify Your OTP , Your OTP is {user_otp}"
-            from_email = "Livileads@gmail.com"
-            recipient_list = [Forgot_Email]
-            send_mail(subject, message, f"No-Reply {from_email}",
-                      recipient_list,  fail_silently=True)
-            # send_mail(subject, message, from_email,
-            #           recipient_list, fail_silently=True)
-            data = {
-                "email": Forgot_Email,
-                "status": 201,
-            }
-            return Response(data=data)
-
-        except:
-            data = {
-                "text": "Entered wrong email",
-                "status": 400,
-            }
-            return Response(data=data)
-
-
-class VerifyForgotEmail(APIView):
-    def post(self, request):
-        userotp = int(request.data.get("otp"))
-        Forgot_Email = request.data.get("email")
-        if userotp:
-            if VerificationOtp.objects.filter(email=Forgot_Email, checkotp=userotp):
-                data = {"Text": "Otp Verified", "status": 200}
-                return Response(data=data)
-            else:
-                data = {
-                    "Text": "Enterd wrong otp",
-                    "email": Forgot_Email,
-                    "status": 400,
-                }
-                return Response(data=data)
-
-
-class UpdatePassword(APIView):
-    def post(self, request):
-        userotp = int(request.data.get("otp"))
-        Forgot_Email = request.data.get("email")
-        NewPassword = request.data.get("password")
-        if userotp:
-            if VerificationOtp.objects.filter(email=Forgot_Email, checkotp=userotp):
-                try:
-                    user = get_object_or_404(User, email=Forgot_Email)
-                    user.set_password(NewPassword)
-                    user.save()
-                    forgot_otp_entries = VerificationOtp.objects.filter(
-                        email=Forgot_Email)
-                    forgot_otp_entries.delete()
-                    data = {"Text": "password updated", "status": 200}
-                    return Response(data=data)
-                except:
-                    data = {
-                        "Text": "Entered wrong email",
-                        "status": 400,
-                    }
-                    return Response(data=data)
-            else:
-                data = {
-                    "Text": "Enterd wrong otp",
-                    "email": Forgot_Email,
-                    "status": 400,
-                }
-                return Response(data=data)
-        else:
-            data = {
-                "Text": "Enterd wrong otp",
-                "email": Forgot_Email,
                 "status": 400,
             }
             return Response(data=data)

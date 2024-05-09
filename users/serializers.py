@@ -40,16 +40,3 @@ class myTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["is_active"] = user.is_active
         token["is_superuser"] = user.is_superuser
         return token
-
-
-class userDataSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            "id",
-            "username",
-            "email",
-            "is_superuser",
-            "phone_number",
-            "is_active",
-        ]
